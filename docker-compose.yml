@@ -1,0 +1,145 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "32000:5432"
+    expose:
+      - "32000"
+    env_file:
+      - ./process.env
+    networks:
+      - grandes_aromas_net
+    container_name: db
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == servidorUbuntu
+  haproxy:
+    build: ./haproxy
+    links:
+      - ui_micro1
+      - ui_micro2
+    depends_on:
+      - db
+      - auth_micro
+      - users_micro
+      - store_micro
+      - ui_micro1
+      - ui_micro2
+    container_name: haproxy
+    ports:
+      - "5080:80"
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == servidorUbuntu
+    networks:
+      - grandes_aromas_net
+
+  ui_micro1:
+    build: ./ui/.
+    container_name: ui_micro1
+    command: npm start
+    # ports:
+      # - "3000:3000"
+    links:
+      - db
+    depends_on:
+      - db
+      - auth_micro
+      - users_micro
+      - store_micro
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == clienteUbuntu
+    networks:
+      - grandes_aromas_net
+  
+  ui_micro2:
+    build: ./ui/.
+    container_name: ui_micro2
+    command: npm start
+    # ports:
+      # - "3000:3000"
+    links:
+      - db
+    depends_on:
+      - db
+      - auth_micro
+      - users_micro
+      - store_micro
+      - ui_micro1
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == clienteUbuntu
+    networks:
+      - grandes_aromas_net
+
+  users_micro:
+    build: ./users/.
+    container_name: users_micro
+    command: npm start
+    ports:
+      - "3001:3001"
+    links:
+      - db
+    depends_on:
+      - db
+    env_file:
+      - ./process.env
+    volumes:
+      - ./config:/var/www/html/config
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == servidorUbuntu
+    networks:
+      - grandes_aromas_net
+
+  store_micro:
+    build: ./store/.
+    container_name: store_micro
+    command: npm start
+    ports:
+      - "3002:3002"
+    links:
+      - db
+    depends_on:
+      - db
+    env_file:
+      - ./process.env
+    volumes:
+      - ./config:/var/www/html/config
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == servidorUbuntu
+    networks:
+      - grandes_aromas_net
+
+  auth_micro:
+    build: ./auth/.
+    container_name: auth_micro
+    command: npm start
+    ports:
+      - "3003:3003"
+    links:
+      - db
+    depends_on:
+      - db
+    env_file:
+      - ./process.env
+    volumes:
+      - ./config:/var/www/html/config
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == servidorUbuntu
+    networks:
+      - grandes_aromas_net
+
+networks:
+  grandes_aromas_net:
