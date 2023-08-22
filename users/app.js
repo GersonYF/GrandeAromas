@@ -18,6 +18,7 @@ db.sequelize.sync();
 
 // Rutas
 app.use('/api/users', require('./app/routes/user.routes'));
+app.use('/api/roles', require('./app/routes/roles.routes'));
 
 app.listen(port, () => {
   logger.info(`Servidor corriendo en el puerto ${port}`);

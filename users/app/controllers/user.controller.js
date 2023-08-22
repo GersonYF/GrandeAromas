@@ -1,20 +1,14 @@
-//const { User } = require('../../../config/database');
 const { User } = require('/var/www/html/config/database');
-
-const jwt = require('jsonwebtoken');
-const { validationResult } = require('express-validator');
-
 
 exports.createUser = async (req, res) => {
   try {
-    const { fullname, email, password } = req.body;
+    const { name, email, password, role_id } = req.body; // adjusted "fullname" to "name"
 
     const user = await User.create({
-      fullname,
+      name,  // adjusted "fullname" to "name"
       email,
       password,
-      is_staff: false,
-      is_superuser: false,
+      role_id  // added role_id to match the model
     });
 
     res.status(201).send(user);
@@ -51,11 +45,10 @@ exports.updateUser = async (req, res) => {
   try {
     const user = await User.findByPk(userId);
     if (user) {
-      user.username = req.body.username || user.username;
+      user.name = req.body.name || user.name;  // adjusted "username" to "name"
       user.email = req.body.email || user.email;
       user.password = req.body.password || user.password;
-      user.is_staff = req.body.is_staff || user.is_staff;
-      user.is_superuser = req.body.is_superuser || user.is_superuser;
+      user.role_id = req.body.role_id || user.role_id;  // added role_id to match the model
       await user.save();
       res.json(user);
     } else {

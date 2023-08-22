@@ -1,6 +1,15 @@
 const { Sequelize } = require('sequelize');
-const UserModel = require('./models/user.model');
-const ProfileModel = require('./models/profile.model');
+const User = require('./models/user.model');
+const Address = require('./models/address.model');
+const CoffeeShop = require('./models/coffee_shop.model');
+const Order = require('./models/order.model');
+const ProductCategory = require('./models/product_category.model');
+const ProductReview = require('./models/product_review.model');
+const ProductSubscription = require('./models/product_subscription.model');
+const ProductOrder = require('./models/products_order.model');
+const Product = require('./models/products.model');
+const Role = require('./models/rol.model');
+const Subscription = require('./models/subscription.model');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
@@ -8,14 +17,62 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   logging: false,
 });
 
-const User = UserModel(sequelize, Sequelize);
-const Profile = ProfileModel(sequelize, Sequelize);
+// User to Role
+User.belongsTo(Role, { foreignKey: 'role_id' });
+Role.hasMany(User, { foreignKey: 'role_id' });
 
-Profile.belongsTo(User);
-User.hasOne(Profile);
+// Coffee Shop to User
+CoffeeShop.belongsTo(User, { foreignKey: 'user_contact_id' });
+User.hasMany(CoffeeShop, { foreignKey: 'user_contact_id' });
+
+// Product to ProductCategory
+Product.belongsTo(ProductCategory, { foreignKey: 'category_id' });
+ProductCategory.hasMany(Product, { foreignKey: 'category_id' });
+
+// ProductReview to User & Product
+ProductReview.belongsTo(User, { foreignKey: 'user_id' });
+User.hasMany(ProductReview, { foreignKey: 'user_id' });
+
+ProductReview.belongsTo(Product, { foreignKey: 'product_id' });
+Product.hasMany(ProductReview, { foreignKey: 'product_id' });
+
+// ProductOrder to Product & Order
+ProductOrder.belongsTo(Product, { foreignKey: 'product_id' });
+Product.hasMany(ProductOrder, { foreignKey: 'product_id' });
+
+ProductOrder.belongsTo(Order, { foreignKey: 'order_id' });
+Order.hasMany(ProductOrder, { foreignKey: 'order_id' });
+
+// Order to Address (shopping and payment) & User
+Order.belongsTo(Address, { foreignKey: 'shopping_address_id' });
+Order.belongsTo(Address, { foreignKey: 'payment_address_id' });
+Order.belongsTo(User, { foreignKey: 'user_id' });
+
+User.hasMany(Order, { foreignKey: 'user_id' });
+
+// ProductSubscription to Product & Subscription
+ProductSubscription.belongsTo(Product, { foreignKey: 'product_id' });
+Product.hasMany(ProductSubscription, { foreignKey: 'product_id' });
+
+ProductSubscription.belongsTo(Subscription, { foreignKey: 'subscription_id' });
+Subscription.hasMany(ProductSubscription, { foreignKey: 'subscription_id' });
+
+Address.belongsTo(User, {  // Establishing the relationship
+  foreignKey: 'userId',
+  as: 'user'  // alias
+});
 
 module.exports = {
   User,
-  Profile,
+  Address,
+  CoffeeShop,
+  Order,
+  ProductCategory,
+  ProductReview,
+  ProductSubscription,
+  ProductOrder,
+  Product,
+  Role,
+  Subscription,
   sequelize
 };
