@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db:
+  dbga:
     image: postgres
     restart: always
     ports:
@@ -10,12 +10,12 @@ services:
       - ./process.env
     networks:
       - grandes_aromas_net
-    container_name: db
+    container_name: dbga
 
   haproxy:
     build: ./haproxy
     depends_on:
-      - db
+      - dbga
       - auth_micro
       - users_micro
       - store_micro
@@ -32,7 +32,7 @@ services:
     container_name: ui_micro1
     command: npm start
     depends_on:
-      - db
+      - dbga
       - auth_micro
       - users_micro
       - store_micro
@@ -44,7 +44,7 @@ services:
     container_name: ui_micro2
     command: npm start
     depends_on:
-      - db
+      - dbga
       - auth_micro
       - users_micro
       - store_micro
@@ -59,7 +59,7 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      - db
+      - dbga
     env_file:
       - ./process.env
     volumes:
@@ -74,7 +74,7 @@ services:
     ports:
       - "3002:3002"
     depends_on:
-      - db
+      - dbga
     env_file:
       - ./process.env
     volumes:
@@ -89,7 +89,7 @@ services:
     ports:
       - "3003:3003"
     depends_on:
-      - db
+      - dbga
     env_file:
       - ./process.env
     volumes:

@@ -1,21 +1,22 @@
 const { Sequelize } = require('sequelize');
-const User = require('./models/user.model');
-const Address = require('./models/address.model');
-const CoffeeShop = require('./models/coffee_shop.model');
-const Order = require('./models/order.model');
-const ProductCategory = require('./models/product_category.model');
-const ProductReview = require('./models/product_review.model');
-const ProductSubscription = require('./models/product_subscription.model');
-const ProductOrder = require('./models/products_order.model');
-const Product = require('./models/products.model');
-const Role = require('./models/rol.model');
-const Subscription = require('./models/subscription.model');
 
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: 'postgres',
   logging: false,
 });
+
+const User = require('./models/user.model')(sequelize, Sequelize.DataTypes);
+const Address = require('./models/address.model')(sequelize, Sequelize.DataTypes);
+const CoffeeShop = require('./models/coffee_shop.model')(sequelize, Sequelize.DataTypes);
+const Order = require('./models/order.model')(sequelize, Sequelize.DataTypes);
+const ProductCategory = require('./models/product_category.model')(sequelize, Sequelize.DataTypes);
+const ProductReview = require('./models/product_review.model')(sequelize, Sequelize.DataTypes);
+const ProductSubscription = require('./models/product_subscription.model')(sequelize, Sequelize.DataTypes);
+const ProductOrder = require('./models/products_order.model')(sequelize, Sequelize.DataTypes);
+const Product = require('./models/products.model')(sequelize, Sequelize.DataTypes);
+const Role = require('./models/rol.model')(sequelize, Sequelize.DataTypes);
+const Subscription = require('./models/subscription.model')(sequelize, Sequelize.DataTypes);
 
 // User to Role
 User.belongsTo(Role, { foreignKey: 'role_id' });

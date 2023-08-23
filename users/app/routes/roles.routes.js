@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Import roleController
-const roleController = require('./controllers/roleController');
+const roleController = require('../controllers/role.controller');
 
 // Import any middleware, if you have them and want to apply them to these routes
 // For demonstration purposes, I'll assume you might have an authentication middleware, but you can remove it if not needed
