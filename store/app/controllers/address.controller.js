@@ -5,8 +5,8 @@ const { Address } = require('/var/www/html/config/database');
 // Create a new address
 exports.createAddress = async (req, res) => {
   try {
-    const { name, address, neighborhood, city, country, department, zip_code } = req.body;
-    const newAddress = await Address.create({ name, address, neighborhood, city, country, department, zip_code });
+    const { name, address, neighborhood, city, country, department, zip_code, user } = req.body;
+    const newAddress = await Address.create({ name, address, neighborhood, city, country, department, zip_code, userId: user?.id });
     res.status(201).send(newAddress);
   } catch (error) {
     res.status(500).send({ message: error.message });

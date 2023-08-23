@@ -91,6 +91,7 @@ Ref: product_orders.order_id > orders.id
 
 Table address {
   id integer [primary key]
+  user_id integer
   name varchar
   address varchar
   neighborhood varchar
@@ -104,6 +105,7 @@ Table address {
 
 Ref: orders.shopping_address_id > address.id
 Ref: orders.payment_address_id > address.id
+Ref: address.user_id > user.id
 
 Table suscriptions {
   id integer [primary key]

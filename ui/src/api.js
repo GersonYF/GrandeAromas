@@ -1,9 +1,9 @@
-const urlChanged = "192.168.100.2";
-//const urlChanged = "localhost";
+//const urlChanged = "192.168.100.2";
+const urlChanged = "0.0.0.0";
 const API_URL = {
   auth: `http://${urlChanged}:3003/api/auth`,
   users: `http://${urlChanged}:3001/api/users`,
-  wellness: `http://${urlChanged}:3002/api/wellness`,
+  store: `http://${urlChanged}:3002/api/store`,
 }
 
 export async function API_loginUser(email, password) {
