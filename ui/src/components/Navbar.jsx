@@ -24,30 +24,38 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {user.fullname}
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <Link className="dropdown-item" to="/signup">
-                    Ver perfil
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/logout">
-                    Logout
-                  </Link>
-                </li>
-              </ul>
-            </li>
+            {user ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {user.fullname}
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <Link className="dropdown-item" to="/profile">
+                      Ver perfil
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/logout">
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Iniciar Sesión
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>
