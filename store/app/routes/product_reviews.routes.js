@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const productReviewController = require('../controllers/product_reviews.controller');
 
-const { authMiddleware } = require('/var/www/html/config/middlewares');
+const { authMiddleware } = require('../../../config/middlewares');
 
 router.post('/create', authMiddleware, productReviewController.createProductReview);
 router.get('/', productReviewController.getAllProductReviews);

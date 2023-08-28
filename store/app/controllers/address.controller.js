@@ -1,6 +1,7 @@
 // controllers/addressController.js
 
-const { Address } = require('/var/www/html/config/database');
+//const { Address } = require('../../../config/database');
+const { Address } = require('../../../config/database');
 
 // Create a new address
 exports.createAddress = async (req, res) => {

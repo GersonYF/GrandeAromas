@@ -1,6 +1,6 @@
 // controllers/productReviewController.js
 
-const { ProductReview } = require('/var/www/html/config/database');
+const { ProductReview } = require('../../../config/database');
 
 // Create a new product review
 exports.createProductReview = async (req, res) => {

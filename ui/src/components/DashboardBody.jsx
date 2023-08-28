@@ -1,15 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useUserContext } from '../UserContext';
+import { useSelector } from 'react-redux'; 
 import StaffDashboard from './StaffDashboard';
 
 const DashboardBody = () => {
   const navigate = useNavigate();
-  const { user } = useUserContext();
-  const onHandleView = async (id) => {
-    navigate('/answers'); // redirect to dashboard
-  }
+  const user = useSelector((state) => state.auth.user);
 
   if(user.is_staff){
     return (
@@ -20,7 +17,15 @@ const DashboardBody = () => {
   return (
     <Container style={{backgroundColor: "#FFF", paddingTop: "20px"}}>
       <Row>
-        <h1>hola 2</h1>
+        {user ? (
+          <>
+            <h1>Hola, {user.name}</h1>
+            <p>Email: {user.email}</p>
+            {/* Display more user info as needed */}
+          </>
+        ) : (
+          <p>No user data available.</p>
+        )}
       </Row>
     </Container>
   );

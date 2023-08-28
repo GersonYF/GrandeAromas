@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 const Signup = () => {
-  const [fullName, setFullName] = useState('');
+  const [name, setFullName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí puedes manejar el registro, por ejemplo, llamando a una API
-    console.log('Full Name:', fullName, 'Username (Email):', username, 'Password:', password);
+    console.log('Full Name:', name, 'Username (Email):', username, 'Password:', password);
   };
 
   return (
@@ -20,7 +20,7 @@ const Signup = () => {
           <input
             type="text"
             className="form-control"
-            value={fullName}
+            value={name}
             onChange={(e) => setFullName(e.target.value)}
             required
           />

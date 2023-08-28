@@ -1,14 +1,15 @@
-const { User } = require('/var/www/html/config/database');
+const { User } = require('../../../config/database');
 
 exports.createUser = async (req, res) => {
   try {
-    const { name, email, password, role_id } = req.body; // adjusted "fullname" to "name"
+    const { name, email, password, is_admin, is_staff } = req.body;
 
     const user = await User.create({
-      name,  // adjusted "fullname" to "name"
+      name,
       email,
       password,
-      role_id  // added role_id to match the model
+      is_admin,
+      is_staff
     });
 
     res.status(201).send(user);
@@ -45,10 +46,12 @@ exports.updateUser = async (req, res) => {
   try {
     const user = await User.findByPk(userId);
     if (user) {
-      user.name = req.body.name || user.name;  // adjusted "username" to "name"
+      user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
-      user.password = req.body.password || user.password;
-      user.role_id = req.body.role_id || user.role_id;  // added role_id to match the model
+      user.password = req.body.password || user.password; // Consider hashing the password if it's updated!
+      user.is_admin = req.body.is_admin !== undefined ? req.body.is_admin : user.is_admin;
+      user.is_staff = req.body.is_staff !== undefined ? req.body.is_staff : user.is_staff;
+      
       await user.save();
       res.json(user);
     } else {

@@ -1,6 +1,6 @@
 // controllers/suscriptionController.js
 
-const { Suscription } = require('/var/www/html/config/database');
+const { Suscription } = require('../../../config/database');
 
 // Create a new suscription
 exports.createSuscription = async (req, res) => {

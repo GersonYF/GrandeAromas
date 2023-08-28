@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux'; // Import useSelector from react-redux
 import Loading from './Loading';
-import { useUserContext } from '../UserContext';
 
 const StaffDashboard = () => {
-  const { user } = useUserContext();
-  const [isLoading, setIsLoading] = useState(true);
+  const user = useSelector((state) => state.auth.user);
+  const status = useSelector((state) => state.auth.status);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }, []);
-
-  if (isLoading) {
-    return <Loading />;
+  if (status === 'loading') {
+    return <Loading />; // Display loading component when fetching user data
   }
 
   return (
-    <Container style={{backgroundColor: "#FFF", paddingTop: "20px"}}>
+    <Container style={{ backgroundColor: '#FFF', paddingTop: '20px' }}>
       <Row>
-        <h1>Hola</h1>
+        {/* Display user info */}
+        {user ? (
+          <>
+            <h1>Hola, {user.name}</h1>
+            <p>Email: {user.email}</p>
+            {/* Display more user info as needed */}
+          </>
+        ) : (
+          <p>No user data available.</p>
+        )}
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default StaffDashboard
+export default StaffDashboard;

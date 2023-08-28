@@ -1,5 +1,5 @@
+const { User } = require('../../../config/database');
 //const { User } = require('../../../config/database');
-const { User } = require('/var/www/html/config/database');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 
@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
     }
 
     if (await user.validatePassword(password)) {
-      const token = jwt.sign({ id: user.id, is_staff: user.is_staff, is_superuser: user.is_superuser }, process.env.SECRET, {
+      const token = jwt.sign({ id: user.id, is_staff: user.is_staff, is_admin: user.is_admin }, process.env.SECRET, {
         expiresIn: '1h',
       });
       res.status(200).json({ message: 'Inicio de sesión exitoso', token });

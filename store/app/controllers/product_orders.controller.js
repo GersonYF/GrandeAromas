@@ -1,6 +1,6 @@
 // controllers/productOrderController.js
 
-const { ProductOrder } = require('/var/www/html/config/database');
+const { ProductOrder } = require('../../../config/database');
 
 // Create a new product order
 exports.createProductOrder = async (req, res) => {

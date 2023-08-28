@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useUserContext } from '../UserContext';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-  const { user } = useUserContext();
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,7 +34,7 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {user.fullname}
+                  {user.name}
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>

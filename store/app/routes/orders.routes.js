@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orders.controller');
 
-const { authMiddleware } = require('/var/www/html/config/middlewares');
+const { authMiddleware } = require('../../../config/middlewares');
 
 router.post('/create', authMiddleware, orderController.createOrder);
 router.get('/', authMiddleware, orderController.getAllOrders);

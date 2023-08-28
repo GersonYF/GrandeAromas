@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const suscriptionController = require('../controllers/subscription.controller');
 
-const { authMiddleware } = require('/var/www/html/config/middlewares');
+const { authMiddleware } = require('../../../config/middlewares');
 
 router.post('/create', authMiddleware, suscriptionController.createSuscription);
 router.get('/', suscriptionController.getAllSuscriptions);

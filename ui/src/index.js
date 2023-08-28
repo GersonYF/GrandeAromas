@@ -6,13 +6,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { UserProvider } from './UserContext';
+import { Provider } from 'react-redux';
+import store from './slices/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <UserProvider>
+  <Provider store={store}>
     <App />
-  </UserProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

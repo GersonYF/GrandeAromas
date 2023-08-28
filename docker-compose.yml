@@ -63,7 +63,7 @@ services:
     env_file:
       - ./process.env
     volumes:
-      - ./config:/var/www/html/config
+      - ./config:../../../config
     networks:
       - grandes_aromas_net
 
@@ -78,7 +78,7 @@ services:
     env_file:
       - ./process.env
     volumes:
-      - ./config:/var/www/html/config
+      - ./config:../../../config
     networks:
       - grandes_aromas_net
 
@@ -93,7 +93,7 @@ services:
     env_file:
       - ./process.env
     volumes:
-      - ./config:/var/www/html/config
+      - ./config:../../../config
     networks:
       - grandes_aromas_net
 

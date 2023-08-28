@@ -1,6 +1,7 @@
 // controllers/coffeeShopController.js
 
-const { CoffeeShop } = require('/var/www/html/config/database');
+// const { CoffeeShop } = require('../../../config/database');
+const { CoffeeShop } = require('../../../config/database');
 
 // Create a new coffee shop
 exports.createCoffeeShop = async (req, res) => {

@@ -15,12 +15,7 @@ const ProductReview = require('./models/product_review.model')(sequelize, Sequel
 const ProductSubscription = require('./models/product_subscription.model')(sequelize, Sequelize.DataTypes);
 const ProductOrder = require('./models/products_order.model')(sequelize, Sequelize.DataTypes);
 const Product = require('./models/products.model')(sequelize, Sequelize.DataTypes);
-const Role = require('./models/rol.model')(sequelize, Sequelize.DataTypes);
 const Subscription = require('./models/subscription.model')(sequelize, Sequelize.DataTypes);
-
-// User to Role
-User.belongsTo(Role, { foreignKey: 'role_id' });
-Role.hasMany(User, { foreignKey: 'role_id' });
 
 // Coffee Shop to User
 CoffeeShop.belongsTo(User, { foreignKey: 'user_contact_id' });
@@ -73,7 +68,6 @@ module.exports = {
   ProductSubscription,
   ProductOrder,
   Product,
-  Role,
   Subscription,
   sequelize
 };

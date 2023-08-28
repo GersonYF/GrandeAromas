@@ -1,6 +1,6 @@
 // controllers/productCategoryController.js
 
-const { ProductCategory } = require('/var/www/html/config/database');
+const { ProductCategory } = require('../../../config/database');
 
 // Create a new product category
 exports.createProductCategory = async (req, res) => {

@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRET);
     const userId = decoded.id;
     const user = await User.findByPk(userId, {
-      attributes: ['id', 'fullname', 'email', 'is_staff', 'is_superuser'],
+      attributes: ['id', 'name', 'email', 'is_staff', 'is_admin'],
     });
 
     if (!user) {
