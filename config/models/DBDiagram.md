@@ -18,13 +18,13 @@ Table rol {
 Ref: users.role_id > rol.id
 
 Table coffee_shop {
-  id integer [primary key]
+  NIT integer [primary key]
   user_contact_id integer
   name varchar
   address varchar
   city varchar
   country varchar
-  phone_number varchar
+  phone_number integer
   created_at timestamp
   updated_at timestamp
 }
@@ -39,8 +39,8 @@ Table product_category {
 }
 
 Table products {
-  id integer [primary key]
-  name varchar
+  id integer 
+  name varchar [primary key]
   category_id integer
   description varchar
   quantity varchar
@@ -54,7 +54,7 @@ Ref: products.category_id > product_category.id
 
 Table product_reviews {
   id integer [primary key]
-  user_id integer
+  user_id integer [foreign key]
   product_id integer
   question varchar
   answer varchar
@@ -68,9 +68,9 @@ Ref: product_reviews.product_id > products.id
 
 Table product_orders {
   id integer [primary key]
-  product_id integer
-  order_id integer
-  quantity float
+  product_id integer [foreign key]
+  order_id integer [foreign key]
+  quantity integer
   created_at timestamp
   updated_at timestamp
 }
