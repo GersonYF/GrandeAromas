@@ -50,11 +50,19 @@ const Navbar = () => {
                 </ul>
               </li>
             ) : (
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Iniciar Sesión
-                </Link>
-              </li>
+              <>
+  <li className="nav-item">
+    <Link className="nav-link" to="/login">
+      Iniciar Sesión
+    </Link>
+  </li>
+  <li>
+    <Link className='nav-link' to="/Nosotros">
+      Nosotros
+    </Link>
+  </li>
+</>
+
             )}
           </ul>
         </div>

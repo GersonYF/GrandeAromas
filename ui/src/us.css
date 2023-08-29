@@ -1,0 +1,110 @@
+:root {
+    --primary-color: #c7a17a;
+    --background-color: #f9f5f0;
+    --dark-color: #151515;
+  }
+  
+  .nosotros-container {
+    background-color: var(--background-color);
+    color: var(--dark-color);
+    font-family: Arial, sans-serif;
+  }
+  
+  .hero-image {
+    background-image: url('../public/cafe-molido.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    justify-content: flex-start; 
+    padding-left: 1rem; 
+  }
+  
+  .hero-title {
+    color: white;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-top: 5rem; 
+    margin-left: 5rem;
+  }
+  
+.hero-text {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 2rem; /* Añadido: Margen arriba */
+  margin-left: 5rem;
+}
+
+.nav-link-us {
+  color: white;
+  border: 2px solid rgb(175, 127, 22);
+  border-radius: 35px;
+  text-decoration: none;
+  background-color: rgb(175, 127, 22);
+  margin-top: 2rem; 
+  margin-left: 5rem;
+  padding: 10px ;
+  width: 15rem;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+  .intro-text {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .about-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+  
+  .about-image {
+    flex: 1; /* Ocupa el espacio necesario */
+    display: flex;
+    justify-content: flex-end; /* Alinea la imagen a la derecha */
+  }
+  
+  .about-image img {
+    width: 200px; 
+    height: 250px;
+  }
+  
+  .about-text {
+    flex: 1;
+    padding-top: 5rem;
+    padding-left: 5rem ;
+    padding-right: 2rem; 
+  }
+  
+  .btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .team-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3rem;
+  }
+  
+  /* Estilos para las imágenes circulares y los nombres de los integrantes */
+  
+.closing-section {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #c7a17a;
+    text-align: center;
+    padding: 3rem;
+}

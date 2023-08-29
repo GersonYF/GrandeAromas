@@ -1,14 +1,14 @@
 {
   "development": {
-    "url": "postgres://postgres:postgres@localhost:5432/grandes_aromas_uao",
+    "url": "postgres://postgres:Josari242008@localhost:5432/grandes_aromas_uao",
     "dialect": "postgres"
   },
   "test": {
-    "url": "postgres://postgres:postgres@localhost:5432/grandes_aromas_uao",
+    "url": "postgres://postgres:Josari242008@localhost:5432/grandes_aromas_uao",
     "dialect": "postgres"
   },
   "production": {
-    "url": "postgres://postgres:postgres@localhost:5432/grandes_aromas_uao",
+    "url": "postgres://postgres:Josari242008@localhost:5432/grandes_aromas_uao",
     "dialect": "postgres"
   }
 }

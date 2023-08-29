@@ -7,6 +7,7 @@ import Login from './views/Login';
 import Signup from './views/Signup';
 import Dashboard from './views/Dashboard';
 import Tests from './views/Tests';
+import Nosotros from  './views/Nosotros';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
@@ -32,6 +33,7 @@ function App() {
           <Route index element={<Dashboard />} />
           {/* Add any more private routes nested inside here */}
         </Route>
+        <Route path="/Nosotros" element={<Nosotros />} />
         <Route path="/" element={<Tests />} />
       </Routes>
     </Router>
