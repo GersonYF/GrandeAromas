@@ -34,7 +34,10 @@ function App() {
           {/* Add any more private routes nested inside here */}
         </Route>
         <Route path="/Nosotros" element={<Nosotros />} />
-        <Route path="/" element={<Tests />} />
+        <Route path="/" element={<PrivateRoute />} > 
+          <Route index element={<Tests />} />
+          {/* Add any more private routes nested inside here */}
+        </Route>
       </Routes>
     </Router>
   );

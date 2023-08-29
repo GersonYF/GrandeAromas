@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import '../styles.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../slices/productSlice';
+import { fetchCoffeeShops } from '../slices/coffeeShopSlice';
+import Product from '../components/Product';
 
 
 const Tienda = () => {
+
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products.data);
+  const user = useSelector((state) => state.auth.user);
+  const coffeeShops = useSelector((state) => state.coffeeShops.data)
+
+  useEffect(() => {
+    if(user){
+      dispatch(fetchProducts());
+      dispatch(fetchCoffeeShops());
+    }
+  }, [dispatch]);
+
   return (
     <div className="container">
       <div className="top-bar">
@@ -14,60 +32,13 @@ const Tienda = () => {
       </div>
       <div>
         <h2 className="title2">NUESTROS PRODUCTOS</h2>
-        <div className='productos'>
-          <div className='producto'>
-          <a href="#" className="product__img">
-            <img src="https://colombia.com.co/wp-content/uploads/2023/01/Bulto-de-Cafe%CC%81-Entorno-2-1.jpg" alt="Imagen de café" className="70kg" />
-          </a>
-          <h1 className="description">BULTO 70KG XMAYOR </h1>
-          <div className="producto_info">
-            <h2>Bulto de 70kg al por mayor de la marca xxxxxx</h2>
-            <p>Categoría del producto: Por Mayor</p>
-            <p className="Price">$270.000</p>
+        {products.length > 0 ? (
+          <div className="productos">
+            {products.map((product) => (<Product key={product.id} product={product} />))}
           </div>
-          <div className='buttom'>
-            <button className='btn'>
-              Añadir al carrito
-            </button>
-          </div>
-        </div>
-
-        <div className='producto'>
-          <a href="#" className="product__img">
-            <img src="https://colombia.com.co/wp-content/uploads/2023/01/Bulto-de-Cafe%CC%81-Entorno-4-1.jpg" alt="Imagen de café" className="70kg" />
-          </a>
-          <h1 className="description">Descripción del producto</h1>
-          <div className="producto_info">
-            <h2>Nombre del producto</h2>
-            <p>Categoría del producto</p>
-            <p className="Price">$70.000</p>
-          </div>
-          <div className='buttom'>
-            <button className='btn'>
-              Añadir al carrito
-            </button>
-          </div>
-        </div>
-
-        <div className='producto'>
-          <a href="#" className="product__img">
-            <img src="https://www.cafemesadelossantos.com/wp-content/uploads/2016/12/bolsa-amazon-winnwe.jpg.png" alt="Imagen de café" className="70kg" />
-          </a>
-          <h1 className="description">Descripción del producto</h1>
-          <div className="producto_info">
-            <h2>Nombre del producto</h2>
-            <p>Categoría del producto</p>
-            <p className="Price">$70.000</p>
-          </div>
-          <div className='buttom'>
-            <button className='btn'>
-              Añadir al carrito
-            </button>
-          </div>
-        </div>
+        ): 'No hay productos'}
 
       </div>
-    </div>  
     </div>
   );
 };
