@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Button from 'react-bootstrap/Button';
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
@@ -24,6 +25,21 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
+            <li>
+              <Link className='nav-link' to="/nosotros">
+                Nosotros
+              </Link>
+            </li>
+            <li>
+              <Link className='nav-link' to="/shop">
+                Tienda
+              </Link>
+            </li>
+            <li>
+              <Link className='nav-link' to="/shop">
+                Mayoristas
+              </Link>
+            </li>
             {user ? (
               <li className="nav-item dropdown">
                 <a
@@ -51,19 +67,20 @@ const Navbar = () => {
               </li>
             ) : (
               <>
-  <li className="nav-item">
-    <Link className="nav-link" to="/login">
-      Iniciar Sesión
-    </Link>
-  </li>
-  <li>
-    <Link className='nav-link' to="/Nosotros">
-      Nosotros
-    </Link>
-  </li>
-</>
-
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Iniciar Sesión
+                  </Link>
+                </li>
+              </>
             )}
+          </ul>
+          <ul className="navbar-nav ms-auto">
+            <li>
+              <Button variant="outline-success">
+                <i class="bi bi-cart"/>
+              </Button>
+            </li>
           </ul>
         </div>
       </div>

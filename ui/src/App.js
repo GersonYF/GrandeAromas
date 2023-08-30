@@ -10,6 +10,7 @@ import Tests from './views/Tests';
 import Nosotros from  './views/Nosotros';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
+import Home from './views/Home';
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <Router>
-      {user && <Navbar />}
+      <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -33,11 +34,12 @@ function App() {
           <Route index element={<Dashboard />} />
           {/* Add any more private routes nested inside here */}
         </Route>
-        <Route path="/Nosotros" element={<Nosotros />} />
-        <Route path="/" element={<PrivateRoute />} > 
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<PrivateRoute />} > 
           <Route index element={<Tests />} />
-          {/* Add any more private routes nested inside here */}
-        </Route>
+          {/* Add any more private routes nested inside here
+        </Route> */}
       </Routes>
     </Router>
   );

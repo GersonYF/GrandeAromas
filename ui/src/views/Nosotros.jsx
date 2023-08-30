@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 const Nosotros = () => {
   return (
     <div>
-      <header>
-        <Navbar />
-      </header>
       <div className="nosotros-container">
         <div className="hero-image">
           <h1 className='hero-title'>Nosotros</h1>

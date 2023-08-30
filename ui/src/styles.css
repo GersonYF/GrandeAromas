@@ -6,7 +6,7 @@
 
 .container {
   font-family: Arial, sans-serif;
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
   padding: 20px;
 }
 
@@ -67,18 +67,4 @@
   color: var(--primary-color);
   font-weight: bold;
   margin-top: 5px;
-}
-
-.btn {
-  background-color: var(--primary-color);
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: var(--dark-color);
 }
