@@ -36,13 +36,8 @@ function App() {
           {/* Add any more private routes nested inside here */}
         </Route>
         <Route path="/nosotros" element={<Nosotros />} />
-<<<<<<< Updated upstream
         <Route path="/" element={<Home />} />
         {/* <Route path="/" element={<PrivateRoute />} > 
-=======
-        <Route path="/address"  element={<Address />} />
-        <Route path="/" element={<PrivateRoute />} > 
->>>>>>> Stashed changes
           <Route index element={<Tests />} />
           {/* Add any more private routes nested inside here
         </Route> */}
