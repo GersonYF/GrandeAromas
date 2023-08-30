@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Login from './views/Login';
 import Signup from './views/Signup';
 import Dashboard from './views/Dashboard';
+import Address from './views/Address';
 import Tests from './views/Tests';
 import Nosotros from  './views/Nosotros';
 import PrivateRoute from './components/PrivateRoute';
@@ -35,8 +36,13 @@ function App() {
           {/* Add any more private routes nested inside here */}
         </Route>
         <Route path="/nosotros" element={<Nosotros />} />
+<<<<<<< Updated upstream
         <Route path="/" element={<Home />} />
         {/* <Route path="/" element={<PrivateRoute />} > 
+=======
+        <Route path="/address"  element={<Address />} />
+        <Route path="/" element={<PrivateRoute />} > 
+>>>>>>> Stashed changes
           <Route index element={<Tests />} />
           {/* Add any more private routes nested inside here
         </Route> */}

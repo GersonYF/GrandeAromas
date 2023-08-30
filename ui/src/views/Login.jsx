@@ -15,7 +15,7 @@ const Login = () => {
 
     // If there's a user, navigate to the dashboard.
     if (user) {
-      navigate('/dashboard');
+      navigate('/Tests');
     }
 
   }, [user, navigate]); // Notice I've added `navigate` to the dependency array.

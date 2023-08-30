@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
-import Navbar from '../components/Navbar';
 import '../styles.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../slices/productSlice';
-import { fetchCoffeeShops } from '../slices/coffeeShopSlice';
 import Product from '../components/Product';
 
 
@@ -13,18 +11,22 @@ const Tienda = () => {
 
   const products = useSelector((state) => state.products.data);
   const user = useSelector((state) => state.auth.user);
-  const coffeeShops = useSelector((state) => state.coffeeShops.data)
 
   useEffect(() => {
     if(user){
       dispatch(fetchProducts());
-      dispatch(fetchCoffeeShops());
     }
   }, [dispatch]);
 
   
   return (
     <div className="container">
+<<<<<<< Updated upstream
+=======
+      <div className="top-bar">
+        <h1 className="title">GRANDES AROMAS</h1>
+      </div>
+>>>>>>> Stashed changes
       <div>
         <h2 className="title2">NUESTROS PRODUCTOS</h2>
         {products.length > 0 ? (

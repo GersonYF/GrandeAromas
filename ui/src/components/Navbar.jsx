@@ -63,6 +63,11 @@ const Navbar = () => {
                       Logout
                     </Link>
                   </li>
+                  <li>
+                    <Link className="dropdown-item" to="/Nosotros">
+                      Nosotros
+                    </Link>
+                  </li>
                 </ul>
               </li>
             ) : (
