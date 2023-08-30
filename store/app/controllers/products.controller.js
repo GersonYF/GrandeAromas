@@ -1,6 +1,6 @@
 // controllers/productController.js
 
-const { Product } = require('../../../config/database');
+const { Product, ProductCategory } = require('../../../config/database');
 
 // Create a new product
 exports.createProduct = async (req, res) => {
@@ -16,7 +16,12 @@ exports.createProduct = async (req, res) => {
 // Get a list of all products
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.findAll();
+    const products = await Product.findAll({
+      include: [{
+        model: ProductCategory,
+        as: 'ProductCategory', // This is optional but helps if you want to give an alias to the included model
+      }]
+    });
     res.json(products);
   } catch (error) {
     res.status(500).send({ message: error.message });

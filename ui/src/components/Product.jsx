@@ -1,25 +1,23 @@
 import React from "react";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 const Product = ({ product }) => {
   console.log(product);
 
   return (
-    <div className='producto'>
-      <a href="#" className="product__img">
-        <img src={'https://colombia.com.co/wp-content/uploads/2023/01/Bulto-de-Cafe%CC%81-Entorno-4-1.jpg'} alt="Imagen de café" className="70kg" />
-      </a>
-      <h1 className="description">Descripción del producto</h1>
-      <div className="producto_info">
-        <h2>{product.name}</h2>
-        <p>Categoría del producto</p>
-        <p className="Price">${product.price}</p>
-      </div>
-      <div className='buttom'>
-        <button className='btn'>
-          Añadir al carrito
-        </button>
-      </div>
-    </div>
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src='https://colombia.com.co/wp-content/uploads/2023/01/Bulto-de-Cafe%CC%81-Entorno-4-1.jpg' />
+      <Card.Body>
+        <Card.Title>{product.name}</Card.Title>
+        <Card.Text>
+          <p>{product?.ProductCategory?.name}</p>
+          <p className="Price">${product.price}</p>
+          <p>{product.description}</p>
+        </Card.Text>
+        <Button variant="primary">Añadir al carrito</Button>
+      </Card.Body>
+    </Card>
   )
 }
 
