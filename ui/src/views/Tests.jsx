@@ -21,9 +21,6 @@ const Tienda = () => {
   
   return (
     <div className="container">
-      <div className="top-bar">
-        <h1 className="title">GRANDES AROMAS</h1>
-      </div>
       <div>
         <h2 className="title2">NUESTROS PRODUCTOS</h2>
         {products.length > 0 ? (

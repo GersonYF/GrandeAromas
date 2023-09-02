@@ -10,19 +10,38 @@ import productOrderSlice from './productOrderSlice'
 import productReviewSlice from './productReviewSlice'
 import productSubscriptionSlice from './productSubscriptionSlice'
 import subscriptionSlice from './subscriptionSlice'
+import cartSlice from './cartSlice'
 
-export default configureStore({
-  reducer: {
-    users: userSlice,
-    auth: authSlice,
-    addresses: addressSlice,
-    orders: orderSlice,
-    products: productSlice,
-    coffeeShops: coffeeShopSlice,
-    productCategories: productCategorySlice,
-    productOrders: productOrderSlice,
-    productReviews: productReviewSlice,
-    productsSubscriptions: productSubscriptionSlice,
-    subscriptions: subscriptionSlice,
-  }
-})
+import { combineReducers } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const rootReducer = combineReducers({
+  users: userSlice,
+  auth: authSlice,
+  addresses: addressSlice,
+  orders: orderSlice,
+  products: productSlice,
+  coffeeShops: coffeeShopSlice,
+  productCategories: productCategorySlice,
+  productOrders: productOrderSlice,
+  productReviews: productReviewSlice,
+  productsSubscriptions: productSubscriptionSlice,
+  subscriptions: subscriptionSlice,
+  cart: cartSlice,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+});
+
+const persistor = persistStore(store);
+
+export { store, persistor };
