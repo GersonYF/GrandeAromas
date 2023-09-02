@@ -1,0 +1,83 @@
+/* carrito.css */
+
+/* Establece el color de fondo para toda la página */
+body {
+  background-color: #9d7b65; /* Color de fondo que ocupa toda la página */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Asegura que la altura sea al menos igual a la altura de la ventana */
+}
+
+/* Encabezado */
+header {
+  background-color: var(--dark-color); /* Color de fondo del encabezado */
+  color: var(--primary-color); /* Color del texto del encabezado */
+  text-align: center;
+  padding: 10px;
+}
+
+/* Título principal */
+h1 {
+  margin: 0;
+}
+
+/* Estilos del carrito de compras */
+.shopping-cart {
+  background-color: #fff; /* Color de fondo del carrito de compras */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra del carrito de compras */
+}
+
+/* Evita la herencia de estilos */
+.no-inherit {
+  all: unset;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.cart-table th {
+  background-color: var(--dark-color); /* Color de fondo de las celdas del encabezado de la tabla */
+  color: var(--primary-color); /* Color del texto del encabezado de la tabla */
+}
+
+/* Estilos de los elementos del carrito */
+.cart-item {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-price {
+  color: #009900; /* Color del precio del artículo */
+}
+
+.remove-button {
+  background-color: #ff0000; /* Color de fondo del botón de eliminar */
+  color: #fff; /* Color del texto del botón de eliminar */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos del selector */
+.select-example {
+  margin-top: 20px;
+}

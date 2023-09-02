@@ -8,6 +8,7 @@ import Signup from './views/Signup';
 import Dashboard from './views/Dashboard';
 import Tests from './views/Tests';
 import Nosotros from  './views/Nosotros';
+import CarritoCompras from './views/CarritoCompras';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 import Home from './views/Home';
@@ -30,7 +31,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<PrivateRoute />} > 
+        <Route path="/dashboard" element={<PrivateRoute />} />
+        <Route path="/carrito" element={<CarritoCompras />} > 
           <Route index element={<Dashboard />} />
           {/* Add any more private routes nested inside here */}
         </Route>
