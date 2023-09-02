@@ -1,0 +1,124 @@
+body {
+  background-color: #dbbda7d6;
+  min-height: 100vh;
+}
+
+.centered-title1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.6rem;
+  }
+
+.Foto1 {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 215vh; /* Ajusta la altura según tus necesidades */
+  }
+  
+.center_img1 {
+    text-align: center; /* Centrar la imagen horizontalmente */
+  }
+  
+.porque {
+    max-width: 85%;
+    height: auto;
+  }
+  
+  .bottom-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .bottom-link:hover {
+    text-decoration: underline;
+
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  background-color: #f2f2f2;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  background-color: #a58a59;
+  margin: 0;
+}
+
+.bottom-link {
+  margin: 0 100px;
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column; /* Cambio para que sea más largo */
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; /* Ajusta el margen superior según sea necesario */
+}
+
+.long-text {
+  text-align: justify;
+  font-weight: bold; /* Agregado para hacer el texto más grueso */
+  font-size: 18px; /* Aumento del tamaño de la letra */
+  line-height: 1.6; /* Espaciado entre líneas para mejorar la legibilidad */
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  height: 8vh; /* Altura del 100% de la ventana */
+}
+
+.button-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Asegura que el contenedor abarque toda la altura */
+}
+
+
