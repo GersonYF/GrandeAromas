@@ -7,6 +7,9 @@ import Login from './views/Login';
 import Signup from './views/Signup';
 import Dashboard from './views/Dashboard';
 import Tests from './views/Tests';
+import Blog from './views/Blog';
+import Users from './views/Users';
+import Ordenes from './views/Ordenes';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
@@ -28,11 +31,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<PrivateRoute />} > 
-          <Route index element={<Dashboard />} />
+        <Route path="/dashboard" element={<PrivateRoute />} /> 
+        <Route path="/blog" element={<Blog />} /> 
+        <Route path="/tablau" element={<Users />} />
+        <Route path="/tablao" element={<Ordenes />} />
+          <Route index element={<Tests />} />
           {/* Add any more private routes nested inside here */}
-        </Route>
-        <Route path="/" element={<Tests />} />
       </Routes>
     </Router>
   );
