@@ -39,7 +39,9 @@ const Home = () => {
               <p>Impulsamos y promovemos la innovación en toda la cadena de producción del café de especialidad</p>
             </Col>
           </Row>
-          <Row>
+          <Row style={{
+            marginTop: '2rem',
+          }}>
             <h2 className="title2">NUESTROS PRODUCTOS</h2>
             {products.length > 0 ? (
               <div className="productos">
@@ -50,8 +52,8 @@ const Home = () => {
             ): 'No hay productos'}
           </Row>
         </Container>
-        <Container fluid>
-        <Row style={{
+        <Container>
+          <Row style={{
             marginTop: '2rem',
           }}>
             

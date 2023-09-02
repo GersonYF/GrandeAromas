@@ -15,15 +15,15 @@ import Home from './views/Home';
 
 function App() {
   const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (token) {
       dispatch(fetchMe());
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <Router>
@@ -36,6 +36,7 @@ function App() {
           {/* Add any more private routes nested inside here */}
         </Route>
         <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/checkout" element={<Address />} />
         <Route path="/" element={<Home />} />
         {/* <Route path="/" element={<PrivateRoute />} > 
           <Route index element={<Tests />} />

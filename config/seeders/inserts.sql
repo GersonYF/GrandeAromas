@@ -13,7 +13,7 @@ INSERT INTO "CoffeeShops"(user_contact_id, name, address, city, country, phone_n
 (1, 'Johns Coffee', '123 Coffee St', 'Coffee City', 'CoffeeLand', '123-456-7890', NOW(), NOW());
 
 -- Insert into address
-INSERT INTO "Addresses"(user_id, name, address, neighborhood, city, country, department, zip_code, "createdAt", "updatedAt") VALUES
+INSERT INTO "Addresses"("userId", name, address, neighborhood, city, country, department, zip_code, "createdAt", "updatedAt") VALUES
 (1, 'John Home', '123 Coffee St', 'Downtown', 'Coffee City', 'CoffeeLand', 'Coffee Dept.', '12345', NOW(), NOW());
 
 -- Insert into orders
@@ -25,8 +25,8 @@ INSERT INTO "ProductOrders"(product_id, order_id, quantity, "createdAt", "update
 (1, 1, 1, NOW(), NOW());
 
 -- Insert into product_reviews
-INSERT INTO "ProductReviews"(user_id, product_id, question, answer, stars, "createdAt", "updatedAt") VALUES
-(1, 1, 'Is this coffee strong?', 'Yes, it is.', 5, NOW(), NOW());
+INSERT INTO "ProductReviews"(user_id, product_id, comment, stars, "createdAt", "updatedAt") VALUES
+(1, 1, 'Is a strong coffee!!!', 5, NOW(), NOW());
 
 -- Insert into suscriptions
 INSERT INTO "Subscriptions"(user_id, name, discount, discount_unit, start_date, end_date, "createdAt", "updatedAt") VALUES
@@ -34,5 +34,5 @@ INSERT INTO "Subscriptions"(user_id, name, discount, discount_unit, start_date, 
 
 
 -- Insert into product_suscriptions
-INSERT INTO "ProductSubscriptions"(product_id, suscription_id) VALUES
-(1, 1);
+INSERT INTO "ProductSubscriptions"(product_id, subscription_id, "createdAt", "updatedAt") VALUES
+(1, 1, NOW(), NOW());

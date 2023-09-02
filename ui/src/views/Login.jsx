@@ -44,9 +44,8 @@ const Login = () => {
                   <div className="card-body p-md-5 mx-md-4">
 
                     <div className="text-center">
-                      <img src={process.env.PUBLIC_URL + 'wellness.png'}
+                      <img src={process.env.PUBLIC_URL + 'logo.png'}
                         style={{width: "185px"}} alt="logo" />
-                      <h4 className="mt-1 mb-5 pb-1">Wellness & Health</h4>
                     </div>
 
                     <form style={{ width: '23rem' }} onSubmit={handleSubmit}>
@@ -88,12 +87,7 @@ const Login = () => {
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                   <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                     <h4 className="mb-4">Ingenier&iacute;a de Datos e IA</h4>
-                    <p className="small mb-5">Wellness & Health es una plataforma que se encarga de leer y analizar datos encontrados en el dataset:.</p>
-                    <p className="small mb-0">
-                      <a href="https://www.kaggle.com/datasets/thedevastator/school-student-health-and-wellbeing" className="btn btn-outline-info">
-                        School Student Health and Wellbeing
-                      </a>
-                    </p>
+                    <p className="small mb-5">Almacenamiento de datos</p>
                   </div>
                 </div>
               </div>
