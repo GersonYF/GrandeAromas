@@ -21,12 +21,9 @@ const Tienda = () => {
   
   return (
     <div className="container">
-<<<<<<< Updated upstream
-=======
       <div className="top-bar">
         <h1 className="title">GRANDES AROMAS</h1>
       </div>
->>>>>>> Stashed changes
       <div>
         <h2 className="title2">NUESTROS PRODUCTOS</h2>
         {products.length > 0 ? (
