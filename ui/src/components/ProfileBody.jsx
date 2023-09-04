@@ -1,21 +1,14 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'; 
-import StaffDashboard from './StaffDashboard';
+import { useSelector } from 'react-redux';
 
-const DashboardBody = () => {
+const ProfileBody = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
 
-  if(user.is_staff){
-    return (
-      <StaffDashboard />
-    )
-  }
-
   return (
-    <Container style={{backgroundColor: "#FFF", paddingTop: "20px"}}>
+    <Container style={{backgroundColor: "#FFF", paddingTop: "20px", minHeight: '350px'}}>
       <Row>
         {user ? (
           <>
@@ -31,4 +24,4 @@ const DashboardBody = () => {
   );
 };
 
-export default DashboardBody;
+export default ProfileBody;

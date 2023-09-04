@@ -1,29 +1,28 @@
 import React, { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import UserTable from '../components/UsersTable';
+import { fetchProducts } from '../slices/productSlice';
+import ProductTable from '../components/ProductsTable';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUsers } from '../slices/userSlice';
 
-const Users = () => {
+const Products = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.data);
+  const products = useSelector((state) => state.products.data);
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return (
     <div className="container" style={{ minHeight: '350px' }}>
     <div className="button-container" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-      <h2>Usuarios</h2>
-      <Button variant="outline-primary">Crear Usuario</Button>
+      <h2>Productos</h2>
+      <Button variant="outline-primary">Crear Producto</Button>
     </div>
       <div>
-        <UserTable users={users} />
+        <ProductTable products={products} />
       </div>
     </div>
   );
 };
 
-export default Users;
-
+export default Products;

@@ -123,46 +123,6 @@ const Home = () => {
                 <Image src="/Persona-trabajando-en-pragma.png" rounded fluid />
               </Col>
             </Row>
-          </Container>
-        <Container fluid style={{ backgroundColor: 'var(--primary-color)', padding: '5rem 0 1rem' }}>
-        <Container>
-          <Row>
-            <Col sm={3} className="footer-col text-center">
-              <p>QUIENES SOMOS</p>
-              <ul className="list-unstyled">
-                <li><Button variant="link" size="sm">Acerca de</Button></li>
-                <li><Button variant="link" size="sm">Tienda Grandes Aromas</Button></li>
-                <li><Button variant="link" size="sm"></Button></li>
-              </ul>
-            </Col>
-            <Col sm={3} className="footer-col text-center">
-              <p>MAYORISTAS</p>
-              <ul className="list-unstyled">
-                <li><Button variant="link" size="sm">Cafeterías</Button></li>
-                <li><Button variant="link" size="sm">Distribuidores</Button></li>
-              </ul>
-            </Col>
-            <Col sm={3} className="footer-col text-center">
-              <p>CONTACTO</p>
-              <ul className="list-unstyled">
-                <li><Button variant="link" size="sm">Ayuda</Button></li>
-                <li><Button variant="link" size="sm">Trabaja con nosotros</Button></li>
-              </ul>
-            </Col>
-            <Col sm={3} className="footer-col text-center">
-              <p>LEGAL</p>
-              <ul className="list-unstyled">
-                <li><Button variant="link" size="sm">Política de Privacidad</Button></li>
-                <li><Button variant="link" size="sm">Términos de Servicio</Button></li>
-              </ul>
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={12} className="footer-rights text-center" style={{color: 'var(--bs-white)'}}>
-              <p>© 2023 Grandes Aromas. Todos los derechos reservados.</p>
-            </Col>
-          </Row>
-        </Container>
         </Container>
       </>
   )
