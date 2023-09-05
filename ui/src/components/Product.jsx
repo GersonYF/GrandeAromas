@@ -1,12 +1,21 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
 const Product = ({ product, onAddToCart }) => {
-  console.log(product);
+
+  const navigate = useNavigate();  // Use the useNavigate hook
+
+  const handleCardClick = () => {
+    navigate(`/shop/productos/${product.id}`);
+  }
 
   return (
-    <Card style={{ width: '18rem', margin: '0 10px' }}>
+    <Card 
+      style={{ width: '18rem', margin: '0 10px', cursor: 'pointer' }} 
+      onClick={handleCardClick}  // Add onClick handler to the Card
+    >
       <Card.Img variant="top" src='/logo.png' />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
@@ -15,7 +24,7 @@ const Product = ({ product, onAddToCart }) => {
           <p className="Price">${product.price}</p>
           <p>{product.description}</p>
         </Card.Text>
-        <Button variant="primary" onClick={onAddToCart(product)}>Añadir al carrito</Button>
+        <Button variant="primary" onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}>Añadir al carrito</Button>
       </Card.Body>
     </Card>
   )

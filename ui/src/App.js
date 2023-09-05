@@ -73,7 +73,7 @@ function App() {
                     <Route path=":id" element={<ProductDetails />} />
                 </Route>
             </Route>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Home />} />
           </Routes>
           <Container fluid style={{ backgroundColor: 'var(--primary-color)', padding: '5rem 0 1rem', marginTop: '3rem' }}>
         <Container>
