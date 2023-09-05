@@ -1,6 +1,6 @@
 import API from './API';
 
-const userAPI = new API('users');
+const userAPI = new API('users', "http://localhost:3001");
 
 export const getUserList = () => {
   return userAPI.getAll();

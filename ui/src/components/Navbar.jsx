@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import CartList from './CartList';  // Assuming you've stored CartList in the same directory
 import { removeFromCart } from '../slices/cartSlice';  // Update with the actual path to your cart slice
+import { logout } from '../slices/authSlice';
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
@@ -21,11 +22,15 @@ const Navbar = () => {
     setShowCart((prevShowCart) => !prevShowCart);
   };
 
+  const onLogout = () => {
+    dispatch(logout());
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-        <img src={process.env.PUBLIC_URL + 'logo.png'} style={{width: "100px"}} alt="logo" />
+        <img src={process.env.PUBLIC_URL + '/logo.png'} style={{width: "100px"}} alt="logo" />
         </Link>
         <button
           className="navbar-toggler"
@@ -50,11 +55,6 @@ const Navbar = () => {
                 Tienda
               </Link>
             </li>
-            <li>
-              <Link className='nav-link' to="/shop">
-                Mayoristas
-              </Link>
-            </li>
             {user ? (
               <li className="nav-item dropdown">
                 <a
@@ -68,20 +68,20 @@ const Navbar = () => {
                   {user.name}
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
+                <li>
                     <Link className="dropdown-item" to="/profile">
                       Ver perfil
                     </Link>
                   </li>
+                  {(user.is_admin || user.is_staff) && (<li>
+                    <Link className='dropdown-item' to="/dashboard">
+                      Administración
+                    </Link>
+                  </li>)}
                   <li>
-                    <Link className="dropdown-item" to="/logout">
+                    <a className='dropdown-item' onClick={onLogout}>
                       Logout
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/Nosotros">
-                      Nosotros
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </li>

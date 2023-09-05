@@ -19,6 +19,16 @@ import Ordenes from './views/Ordenes';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 import Home from './views/Home';
+import Shop from './views/Shop';
+
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+import Profile from './views/Profile';
+import Products from './views/Products';
+import Subscriptions from './views/Subscriptions';
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -42,14 +52,52 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<PrivateRoute />}>
               <Route index element={<Dashboard />} />
+              <Route path="/dashboard/usuarios" element={<Users />} />
+              <Route path="/dashboard/ordenes" element={<Ordenes />} />
+              <Route path="/dashboard/productos" element={<Products />} />
+              <Route path="/dashboard/suscripciones" element={<Subscriptions />} />
+            </Route>
+            <Route path="/profile" element={<PrivateRoute />}>
+              <Route index element={<Profile />} />
             </Route>
             <Route path="/blog" element={<Blog />} /> 
-            <Route path="/tablau" element={<Users />} />
-            <Route path="/tablao" element={<Ordenes />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/checkout" element={<AddressCheckout />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/" element={<Home />} />
           </Routes>
+          <Container fluid style={{ backgroundColor: 'var(--primary-color)', padding: '5rem 0 1rem', marginTop: '3rem' }}>
+        <Container>
+          <Row>
+            <Col sm={4} className="footer-col text-center">
+              <p>QUIENES SOMOS</p>
+              <ul className="list-unstyled">
+                <li><Button variant="link" size="sm">Acerca de</Button></li>
+                <li><Button variant="link" size="sm">Tienda Grandes Aromas</Button></li>
+                <li><Button variant="link" size="sm"></Button></li>
+              </ul>
+            </Col>
+            <Col sm={4} className="footer-col text-center">
+              <p>CONTACTO</p>
+              <ul className="list-unstyled">
+                <li><Button variant="link" size="sm">Ayuda</Button></li>
+                <li><Button variant="link" size="sm">Trabaja con nosotros</Button></li>
+              </ul>
+            </Col>
+            <Col sm={4} className="footer-col text-center">
+              <p>LEGAL</p>
+              <ul className="list-unstyled">
+                <li><Button variant="link" size="sm">Política de Privacidad</Button></li>
+                <li><Button variant="link" size="sm">Términos de Servicio</Button></li>
+              </ul>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12} className="footer-rights text-center" style={{color: 'var(--bs-white)'}}>
+              <p>© 2023 Grandes Aromas. Todos los derechos reservados.</p>
+            </Col>
+          </Row>
+        </Container></Container>
         </Router>
       </PersistGate>
     </Provider>

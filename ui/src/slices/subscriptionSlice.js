@@ -50,7 +50,7 @@ const subscriptionSlice = createSlice({
       })
       .addCase(fetchSubscriptions.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data = action.payload.data;
       })
       .addCase(fetchSubscriptions.rejected, (state, action) => {
         state.status = 'failed';
