@@ -21,3 +21,7 @@ export const updateProduct = (productId, updatedProductData) => {
 export const deleteProduct = (productId) => {
   return productAPI.delete(productId);
 };
+
+export const getProductReviewsByProductIdAPI = (productId) => {
+  return productAPI.getReviewsByProductId(productId);
+};

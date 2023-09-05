@@ -67,8 +67,13 @@ function App() {
             <Route path="/blog" element={<Blog />} /> 
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/checkout" element={<AddressCheckout />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/shop">
+                <Route index element={<Shop />} />
+                <Route path="productos">
+                    <Route path=":id" element={<ProductDetails />} />
+                </Route>
+            </Route>
+            <Route path="/" element={<Login />} />
           </Routes>
           <Container fluid style={{ backgroundColor: 'var(--primary-color)', padding: '5rem 0 1rem', marginTop: '3rem' }}>
         <Container>
