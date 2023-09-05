@@ -12,7 +12,7 @@ const Shop = () => {
 
   // Debounce the actual dispatch action
   const debouncedAddToCart = debounce((product) => {
-    dispatch(addToCart(product));
+    dispatch(addToCart({product, quantityToAdd: 1}));
   }, 300); // 300ms delay
 
   const onAddToCart = (product) => () => {

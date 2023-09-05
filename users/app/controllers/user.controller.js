@@ -2,14 +2,14 @@ const { User } = require('../../../config/database');
 
 exports.createUser = async (req, res) => {
   try {
-    const { name, email, password, is_admin, is_staff } = req.body;
+    const { name, email, password } = req.body;
 
     const user = await User.create({
       name,
       email,
       password,
-      is_admin,
-      is_staff
+      is_admin: false,
+      is_staff: false,
     });
 
     res.status(201).send(user);
