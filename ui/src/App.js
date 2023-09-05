@@ -29,6 +29,7 @@ import Button from 'react-bootstrap/Button';
 import Profile from './views/Profile';
 import Products from './views/Products';
 import Subscriptions from './views/Subscriptions';
+import ProductDetails from './views/ProductDetails';
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -49,14 +50,17 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/registro" element={<Signup />} />
             <Route path="/dashboard" element={<PrivateRoute />}>
-              <Route index element={<Dashboard />} />
-              <Route path="/dashboard/usuarios" element={<Users />} />
-              <Route path="/dashboard/ordenes" element={<Ordenes />} />
-              <Route path="/dashboard/productos" element={<Products />} />
-              <Route path="/dashboard/suscripciones" element={<Subscriptions />} />
+                <Route index element={<Dashboard />} />
+                <Route path="usuarios" element={<Users />} />
+                <Route path="ordenes" element={<Ordenes />} />
+                <Route path="productos" element={<Products />}>
+                    <Route path=":id" element={<ProductDetails />} />
+                </Route>
+                <Route path="suscripciones" element={<Subscriptions />} />
             </Route>
+
             <Route path="/profile" element={<PrivateRoute />}>
               <Route index element={<Profile />} />
             </Route>
