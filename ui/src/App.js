@@ -12,18 +12,19 @@ import Signup from './views/Signup';
 import Dashboard from './views/Dashboard';
 import AddressCheckout from './views/AddressCheckout';
 import Tests from './views/Tests';
+import Preparaciones from './views/Preparaciones';
 import Nosotros from  './views/Nosotros';
 import Blog from './views/Blog';
 import Users from './views/Users';
 import Ordenes from './views/Ordenes';
 import PrivateRoute from './components/PrivateRoute';
+import PreparacionCart from './components/PreparacionCart';
 import './App.css';
 import Home from './views/Home';
 import Shop from './views/Shop';
 
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Profile from './views/Profile';
@@ -51,6 +52,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
+            <Route path="/preparaciones" element={<Preparaciones/>} />
             <Route path="/dashboard" element={<PrivateRoute />}>
                 <Route index element={<Dashboard />} />
                 <Route path="usuarios" element={<Users />} />
