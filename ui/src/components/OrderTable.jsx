@@ -7,10 +7,10 @@ const OrderTable = ({ orders }) => (
     <thead>
       <tr>
         <th>Id</th>
-        <th>User Id</th>
-        <th>Shopping address id</th>
-        <th>Payment address id</th>
-        <th>Total price</th>
+        <th>ID de Usuario</th>
+        <th>ID Dirección de envío</th>
+        <th>ID Dirección de pago</th>
+        <th>Precio Total</th>
         <th>Estado de Orden</th>
         <th>Ver</th>
       </tr>
@@ -26,7 +26,7 @@ const OrderTable = ({ orders }) => (
           <td>{order.order_status}</td>
           <td>
             <div className="button-container1">
-              <Button size="sm" variant="outline-secondary"><i className='bi bi-eye'></i></Button>
+              <Button size="sm" variant="outline-secondary" href={`/checkout/orden/${order.id}`}><i className='bi bi-eye'></i></Button>
             </div>
           </td>
         </tr>

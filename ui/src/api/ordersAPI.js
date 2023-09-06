@@ -21,3 +21,7 @@ export const updateOrder = (orderId, updatedOrderData) => {
 export const deleteOrder = (orderId) => {
   return orderAPI.delete(orderId);
 };
+
+export const getOrdersByMe = () => {
+  return orderAPI.getOrdersByMe();
+}

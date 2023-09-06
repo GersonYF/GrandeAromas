@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, getCurrentUser } from '../api/authAPI';
+import { fetchMyOrders } from './orderSlice';
 
 export const loginUser = createAsyncThunk('auth/login', async (credentials) => {
   const response = await login(credentials);
@@ -18,6 +19,7 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     token: localStorage.getItem('token') || null,
+    orders: [],
     status: 'idle', // Add a status field for loading state
     error: null,
   },
@@ -25,6 +27,7 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.token = null;
+      state.orders = [];
       localStorage.removeItem('token');
     },
   },
@@ -52,6 +55,9 @@ const authSlice = createSlice({
       .addCase(fetchMe.rejected, (state, action) => {
         state.error = action.error.message;
         state.status = 'failed'; // Set failed state if fetching user details is rejected
+      })
+      .addCase(fetchMyOrders.fulfilled, (state, action) => {
+        state.orders = action.payload.data;
       });
   },
 });

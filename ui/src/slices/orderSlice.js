@@ -5,6 +5,7 @@ import {
   getOrderById as getOrderByIdAPI,
   updateOrder as updateOrderAPI,
   deleteOrder as deleteOrderAPI,
+  getOrdersByMe,
 } from '../api/ordersAPI';
 
 // Async thunks
@@ -31,6 +32,11 @@ export const editOrder = createAsyncThunk('orders/editOrder', async ({ id, updat
 export const removeOrder = createAsyncThunk('orders/removeOrder', async (orderId) => {
   await deleteOrderAPI(orderId);
   return orderId;
+});
+
+export const fetchMyOrders = createAsyncThunk('orders/fetchMyOrders', async () => {
+  const data = await getOrdersByMe();
+  return data;
 });
 
 const orderSlice = createSlice({

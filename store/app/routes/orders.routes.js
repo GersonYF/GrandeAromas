@@ -8,9 +8,9 @@ const { authMiddleware } = require('../../../config/middlewares');
 
 router.post('/', authMiddleware, orderController.createOrder);
 router.get('/', authMiddleware, orderController.getAllOrders);
+router.get('/me', authMiddleware, orderController.getOrdersByMe);
 router.get('/:orderId', authMiddleware, orderController.getOrderById);
 router.put('/:orderId', authMiddleware, orderController.updateOrder);
 router.delete('/:orderId', authMiddleware, orderController.deleteOrder);
-router.get('/user/:userId', authMiddleware, orderController.getOrdersByUser);
 
 module.exports = router;

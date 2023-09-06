@@ -28,7 +28,7 @@ const ProductTable = ({ products }) => (
           <td>{product.price}</td>
           <td>
             <div className="button-container1">
-              <Button size="sm" variant="outline-secondary"><i className='bi bi-eye'></i></Button>
+              <Button size="sm" variant="outline-secondary" href={`/shop/products/${product.id}`}><i className='bi bi-eye'></i></Button>
             </div>
           </td>
         </tr>

@@ -135,7 +135,7 @@ exports.deleteOrder = async (req, res) => {
   }
 };
 
-exports.getOrdersByUser = async (req, res) => {
+exports.getOrdersByMe = async (req, res) => {
   try {
     const userId = req.user.id;
     const orders = await Order.findAll({
