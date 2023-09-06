@@ -26,7 +26,7 @@ const Shop = () => {
         {products.length > 0 ? (
           <div className="productos">
             {products.map((product) => (
-              <Product key={product.id} product={product} onAddToCart={onAddToCart} />
+              <Product key={product.id} product={product} onAddToCart={onAddToCart(product)} />
             ))}
           </div>
         ) : 'No hay productos'}

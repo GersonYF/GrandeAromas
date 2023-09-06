@@ -4,13 +4,15 @@ import { Container, Row, Button, Form, Col } from 'react-bootstrap';
 import TableProduct from '../components/TableProduct';
 import { setPaymentAddress, setShippingAddress } from '../slices/cartSlice';
 import { createNewOrder } from '../slices/orderSlice';
+import { useNavigate } from 'react-router-dom';
 
 function AddressCheckout() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const [step, setStep] = useState('products');  // 'products' or 'address'
   const user = useSelector((state) => state.auth.user);
+  const selectedOrder = useSelector((state) => state.orders.selectedOrder);
   const cartItems = useSelector((state) => state.cart.items);
   const shippingAddress = useSelector((state) => state.cart.shippingAddress);
   const paymentAddress = useSelector((state) => state.cart.paymentAddress);
@@ -39,15 +41,19 @@ function AddressCheckout() {
     setStep('products');
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
+    console.log("USER", user)
     if (user) {
-      dispatch(createNewOrder({ user_id: user.id, products: cartItems, shipping_address: shippingAddress, payment_address: paymentAddress }));
+      await dispatch(createNewOrder({ user_id: user.id, products: cartItems, shopping_address: shippingAddress, payment_address: paymentAddress }));
       // You might want to navigate to a confirmation page or another page after the order is created
+      navigate(`/checkout/orden/${selectedOrder.id}`);
     } else {
       console.error("User not found in state");
       // Handle error, maybe redirect to login or show a message
     }
   };
+
+  
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const isShippingAddressEmpty = !shippingAddress?.name || !shippingAddress?.address || !shippingAddress?.neighborhood || !shippingAddress?.city || !shippingAddress?.department || !shippingAddress?.zip_code;
@@ -116,19 +122,40 @@ function AddressCheckout() {
       {step === 'payment' && (
         <Row>
           <h2 style={{ margin: '2rem 0' }}>Confirmación de pago</h2>
-          <TableProduct />
-          <h4>Confirmación Dirección:</h4>
-          <h5>Nombre: {shippingAddress.name}</h5>
-          <h5>Dirección de envío: {shippingAddress.address}</h5>
-          <h5>Barrio: {shippingAddress.neighborhood}</h5>
-          <h5>Ciudad: {shippingAddress.city}</h5>
-          <h5>Departamento: {shippingAddress.department}</h5>
-          <h5>Código Postal: {shippingAddress.zip_code}</h5>
-          <h5>País: {shippingAddress.country}</h5>
+          <Col md={12} style={{marginBottom: '2rem'}}><TableProduct /></Col>
+          {shippingAddress && (
+            <Col md={6}>
+              <h4>Confirmación Dirección de Envío:</h4>
+              <h5>Nombre: {shippingAddress.name}</h5>
+              <h5>Dirección de envío: {shippingAddress.address}</h5>
+              <h5>Barrio: {shippingAddress.neighborhood}</h5>
+              <h5>Ciudad: {shippingAddress.city}</h5>
+              <h5>Departamento: {shippingAddress.department}</h5>
+              <h5>Código Postal: {shippingAddress.zip_code}</h5>
+              <h5>País: {shippingAddress.country}</h5>
+            </Col>
+          )}
 
-          <Button onClick={handlePayment} className="mt-3">
-            Confirmar Pago
-          </Button>
+          {
+            paymentAddress && (
+              <Col md={6}>
+                <h4>Confirmación Dirección de Pago:</h4>
+                <h5>Nombre: {paymentAddress.name}</h5>
+                <h5>Dirección de envío: {paymentAddress.address}</h5>
+                <h5>Barrio: {paymentAddress.neighborhood}</h5>
+                <h5>Ciudad: {paymentAddress.city}</h5>
+                <h5>Departamento: {paymentAddress.department}</h5>
+                <h5>Código Postal: {paymentAddress.zip_code}</h5>
+                <h5>País: {paymentAddress.country}</h5>
+              </Col>
+            )
+          }
+
+          <Col md={12} className='text-center'  style={{marginTop: '2rem'}}>
+            <Button onClick={handlePayment} className="mt-3">
+              Confirmar Pago
+            </Button>
+          </Col>
         </Row>
       )}
     </Container>

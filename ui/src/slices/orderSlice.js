@@ -5,6 +5,7 @@ import {
   getOrderById as getOrderByIdAPI,
   updateOrder as updateOrderAPI,
   deleteOrder as deleteOrderAPI,
+  getOrdersByMe,
 } from '../api/ordersAPI';
 
 // Async thunks
@@ -33,6 +34,11 @@ export const removeOrder = createAsyncThunk('orders/removeOrder', async (orderId
   return orderId;
 });
 
+export const fetchMyOrders = createAsyncThunk('orders/fetchMyOrders', async () => {
+  const data = await getOrdersByMe();
+  return data;
+});
+
 const orderSlice = createSlice({
   name: 'orders',
   initialState: {
@@ -56,10 +62,11 @@ const orderSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(fetchOrderById.fulfilled, (state, action) => {
-        state.selectedOrder = action.payload;
+        state.selectedOrder = action.payload.data;
       })
       .addCase(createNewOrder.fulfilled, (state, action) => {
-        state.data.push(action.payload);
+        state.data.push(action.payload.data);
+        state.selectedOrder = action.payload.data;
       })
       .addCase(editOrder.fulfilled, (state, action) => {
         const index = state.data.findIndex(order => order.id === action.payload.id);

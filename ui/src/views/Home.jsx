@@ -23,6 +23,7 @@ const Home = () => {
   }, 300); // 300ms delay
 
   const onAddToCart = (product) => () => {
+    console.log("PRODUCT", product)
     debouncedAddToCart(product);
   };
 
@@ -64,7 +65,7 @@ const Home = () => {
             {products.length > 0 ? (
               <div className="productos">
                 {products.map((product, idx) => (
-                  (idx < 4) ? (<Product key={product.id} product={product} onAddToCart={onAddToCart} />) : null
+                  (idx < 4) ? (<Product key={product.id} product={product} onAddToCart={onAddToCart(product)} />) : null
                   ))}
               </div>
             ): 'No hay productos'}

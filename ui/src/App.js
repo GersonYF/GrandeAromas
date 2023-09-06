@@ -29,8 +29,10 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Profile from './views/Profile';
 import Products from './views/Products';
+import Politicas from './views/Politicas';
 import Subscriptions from './views/Subscriptions';
 import ProductDetails from './views/ProductDetails';
+import OrderDetails from './views/OrderDetails';
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -52,7 +54,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
-            <Route path="/preparaciones" element={<Preparaciones/>} />
+            <Route path="/politicas" element={<Politicas />} />
             <Route path="/dashboard" element={<PrivateRoute />}>
                 <Route index element={<Dashboard />} />
                 <Route path="usuarios" element={<Users />} />
@@ -68,12 +70,18 @@ function App() {
             </Route>
             <Route path="/blog" element={<Blog />} /> 
             <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/checkout" element={<AddressCheckout />} />
+            <Route path="/checkout">
+              <Route index element={<AddressCheckout />} />
+              <Route path="orden">
+                <Route path=":id" element={<OrderDetails />} />
+              </Route>
+            </Route>
             <Route path="/shop">
+              <Route index element={<Shop />} />
+              <Route path="productos">
                 <Route index element={<Shop />} />
-                <Route path="productos">
-                    <Route path=":id" element={<ProductDetails />} />
-                </Route>
+                  <Route path=":id" element={<ProductDetails />} />
+              </Route>
             </Route>
             <Route path="/" element={<Home />} />
           </Routes>
@@ -98,7 +106,7 @@ function App() {
             <Col sm={4} className="footer-col text-center">
               <p>LEGAL</p>
               <ul className="list-unstyled">
-                <li><Button variant="link" size="sm">Política de Privacidad</Button></li>
+                <li><Button variant="link" href= "/politicas" size="sm">Política de Privacidad</Button></li>
                 <li><Button variant="link" size="sm">Términos de Servicio</Button></li>
               </ul>
             </Col>

@@ -25,7 +25,7 @@ const CartList = ({ items, onRemoveItem }) => {
               <Col>${item.price.toFixed(2)}</Col>
               <Col>
                 <Button variant="danger" onClick={() => onRemoveItem(item.id)}>
-                  <i class="bi bi-dash-circle-dotted"></i>
+                  <i className="bi bi-dash-circle-dotted"></i>
                 </Button>
               </Col>
             </Row>
