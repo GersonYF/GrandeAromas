@@ -68,3 +68,29 @@
 
 .footer-col p { font-weight: 600; text-align: center; }
 .footer-col .btn-link{ text-decoration: none; color: var(--bs-white) }
+
+/* Estilos para centrar el contenido y ajustar los títulos */
+.politicas-de-privacidad {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.politicas-de-privacidad h1 {
+  font-size: 24px; /* Tamaño de letra más grande para el título */
+  text-align: center; /* Centro el título */
+  padding: 20px;
+}
+
+.politicas-de-privacidad h2 {
+  font-size: 20px; /* Tamaño de letra más grande para los subtítulos */
+  text-align: center; /* Centro el título */
+}
+
+.politicas-de-privacidad p {
+  font-size: 16px; /* Tamaño de letra para el texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+  margin-bottom: 20px;
+  text-align: center; /* Centro el título */
+}
