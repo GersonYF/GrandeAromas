@@ -56,7 +56,7 @@ const orderSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(fetchOrderById.fulfilled, (state, action) => {
-        state.selectedOrder = action.payload;
+        state.selectedOrder = action.payload.data;
       })
       .addCase(createNewOrder.fulfilled, (state, action) => {
         state.data.push(action.payload.data);

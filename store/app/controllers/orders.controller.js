@@ -134,3 +134,36 @@ exports.deleteOrder = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
+
+exports.getOrdersByUser = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const orders = await Order.findAll({
+      where: { user_id: userId },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'name', 'email']
+        },
+        {
+          model: Address,
+          as: 'shoppingAddress',
+          attributes: ['name', 'address', 'neighborhood', 'city', 'country', 'department', 'zip_code']
+        },
+        {
+          model: Address,
+          as: 'paymentAddress',
+          attributes: ['name', 'address', 'neighborhood', 'city', 'country', 'department', 'zip_code']
+        }
+      ]
+    });
+
+    if (orders && orders.length > 0) {
+      res.json(orders);
+    } else {
+      res.status(404).json({ message: 'No orders found for this user' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};

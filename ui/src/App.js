@@ -76,7 +76,9 @@ function App() {
               </Route>
             </Route>
             <Route path="/shop">
+              <Route index element={<Shop />} />
               <Route path="productos">
+                <Route index element={<Shop />} />
                   <Route path=":id" element={<ProductDetails />} />
               </Route>
             </Route>

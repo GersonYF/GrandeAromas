@@ -4,13 +4,15 @@ import { Container, Row, Button, Form, Col } from 'react-bootstrap';
 import TableProduct from '../components/TableProduct';
 import { setPaymentAddress, setShippingAddress } from '../slices/cartSlice';
 import { createNewOrder } from '../slices/orderSlice';
+import { useNavigate } from 'react-router-dom';
 
 function AddressCheckout() {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const [step, setStep] = useState('products');  // 'products' or 'address'
   const user = useSelector((state) => state.auth.user);
+  const selectedOrder = useSelector((state) => state.orders.selectedOrder);
   const cartItems = useSelector((state) => state.cart.items);
   const shippingAddress = useSelector((state) => state.cart.shippingAddress);
   const paymentAddress = useSelector((state) => state.cart.paymentAddress);
@@ -39,16 +41,19 @@ function AddressCheckout() {
     setStep('products');
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     console.log("USER", user)
     if (user) {
-      dispatch(createNewOrder({ user_id: user.id, products: cartItems, shopping_address: shippingAddress, payment_address: paymentAddress }));
+      await dispatch(createNewOrder({ user_id: user.id, products: cartItems, shopping_address: shippingAddress, payment_address: paymentAddress }));
       // You might want to navigate to a confirmation page or another page after the order is created
+      navigate(`/checkout/orden/${selectedOrder.id}`);
     } else {
       console.error("User not found in state");
       // Handle error, maybe redirect to login or show a message
     }
   };
+
+  
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const isShippingAddressEmpty = !shippingAddress?.name || !shippingAddress?.address || !shippingAddress?.neighborhood || !shippingAddress?.city || !shippingAddress?.department || !shippingAddress?.zip_code;

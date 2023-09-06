@@ -76,6 +76,13 @@ class API {
       throw error;
     });
   }
+
+  getOrdersByMe() {
+    return axios.get(`${this.BASE_URL}/me`).catch(error => {
+      console.error('API Error:', error);
+      throw error;
+    });
+  }
 }
 
 export default API;

@@ -11,5 +11,6 @@ router.get('/', authMiddleware, orderController.getAllOrders);
 router.get('/:orderId', authMiddleware, orderController.getOrderById);
 router.put('/:orderId', authMiddleware, orderController.updateOrder);
 router.delete('/:orderId', authMiddleware, orderController.deleteOrder);
+router.get('/user/:userId', authMiddleware, orderController.getOrdersByUser);
 
 module.exports = router;

@@ -35,8 +35,8 @@ const OrderDetails = () => {
                   <p><strong>ID del Pedido:</strong> {order?.id}</p>
                   <p><strong>Nombre del Usuario:</strong> {order?.User?.name}</p>
                   <p><strong>Email del Usuario:</strong> {order?.User?.email}</p>
-                  <p><strong>Dirección de Envío:</strong> {order?.ShoppingAddress?.address}, {order?.ShoppingAddress?.city}, {order?.ShoppingAddress?.country}</p>
-                  <p><strong>Dirección de Pago:</strong> {order?.PaymentAddress?.address}, {order?.PaymentAddress?.city}, {order?.PaymentAddress?.country}</p>
+                  <p><strong>Dirección de Envío:</strong> {order?.shoppingAddress?.address}, {order?.shoppingAddress?.city}, {order?.shoppingAddress?.zip_code}</p>
+                  <p><strong>Dirección de Pago:</strong> {order?.paymentAddress?.address}, {order?.paymentAddress?.city}, {order?.paymentAddress?.zip_code}</p>
                 </Col>
                 <Col>
                   <p><strong>Total:</strong> ${order?.total_price?.toFixed(2)}</p>

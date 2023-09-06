@@ -40,8 +40,8 @@ ProductOrder.belongsTo(Order, { foreignKey: 'order_id' });
 Order.hasMany(ProductOrder, { foreignKey: 'order_id' });
 
 // Order to Address (shopping and payment) & User
-Order.belongsTo(Address, { foreignKey: 'shopping_address_id' });
-Order.belongsTo(Address, { foreignKey: 'payment_address_id' });
+Order.belongsTo(Address, { as: 'shoppingAddress', foreignKey: 'shopping_address_id' });
+Order.belongsTo(Address, { as: 'paymentAddress', foreignKey: 'payment_address_id' });
 Order.belongsTo(User, { foreignKey: 'user_id' });
 
 User.hasMany(Order, { foreignKey: 'user_id' });
