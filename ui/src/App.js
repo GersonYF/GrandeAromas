@@ -55,6 +55,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
             <Route path="/politicas" element={<Politicas />} />
+            <Route path="/preparaciones" element={<Preparaciones />} />
             <Route path="/dashboard" element={<PrivateRoute />}>
                 <Route index element={<Dashboard />} />
                 <Route path="usuarios" element={<Users />} />
