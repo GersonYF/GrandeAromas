@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     name: DataTypes.STRING,
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: true  // This makes the email field unique
+    },
     password: DataTypes.STRING,
     is_admin: {
       type: DataTypes.BOOLEAN,

@@ -16,7 +16,7 @@ const Products = () => {
     <div className="container" style={{ minHeight: '350px' }}>
     <div className="button-container" style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
       <h2>Productos</h2>
-      <Button variant="outline-primary">Crear Producto</Button>
+      <Button variant="outline-primary" href="/dashboard/crear-producto">Crear Producto</Button>
     </div>
       <div>
         <ProductTable products={products} />

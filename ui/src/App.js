@@ -33,6 +33,7 @@ import Politicas from './views/Politicas';
 import Subscriptions from './views/Subscriptions';
 import ProductDetails from './views/ProductDetails';
 import OrderDetails from './views/OrderDetails';
+import CreateProduct from './views/CreateProduct';
 
 function App() {
   const user = useSelector((state) => state.auth.user);
@@ -63,6 +64,7 @@ function App() {
                 <Route path="productos" element={<Products />}>
                     <Route path=":id" element={<ProductDetails />} />
                 </Route>
+                <Route path="crear-producto" element={<CreateProduct />} />
                 <Route path="suscripciones" element={<Subscriptions />} />
             </Route>
 

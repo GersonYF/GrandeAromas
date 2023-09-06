@@ -32,7 +32,7 @@ const OrderTable = ({ orders }) => (
         </tr>
       )) : (
         <tr>
-          <td colSpan="8">No orders found</td>
+          <td colSpan="8">No se encontraron ordenes</td>
         </tr>
       )}
     </tbody>

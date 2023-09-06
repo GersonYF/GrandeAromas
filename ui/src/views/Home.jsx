@@ -92,11 +92,11 @@ const Home = () => {
                 flexDirection: 'column',
                 color: 'var(--bs-white)',
               }}>
-                <h3 style={{fontWeight: 'bold'}}>Kit mensual</h3>
-                <p>3 Bolsas 340gr y 28 sobres de preparación individual.</p>
-                <p>Obtienes mejor precio que al comprar por unidad.</p>
+                <h3 style={{fontWeight: 'bold'}}>Preparacion de Metodos </h3>
+                <p>Accede a un apartado especial de preparacion de metodos </p>
+                <p>Lista de pasos para una preparacion especial</p>
                 <p>
-                  <Button variant="outline-light">SUBSCRIBIRSE</Button>
+                  <Button variant="outline-light" href="/preparaciones">VER CONTENIDO</Button>
                 </p>
               </Col>
             </Row>

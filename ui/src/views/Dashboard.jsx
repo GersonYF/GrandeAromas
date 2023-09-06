@@ -34,19 +34,6 @@ const Dashboard = () => {
         marginTop: '5rem',
       }}>
         <Col md={4}>
-          grafico 1
-        </Col>
-        <Col md={4}>
-          grafico 2
-        </Col>
-        <Col md={4}>
-          grafico 3
-        </Col>
-      </Row>
-      <Row style={{
-        marginTop: '5rem',
-      }}>
-        <Col md={4}>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <h3>Usuarios</h3>
             <Button variant="outline-primary" href="/dashboard/usuarios" size="sm">Ver más</Button>
