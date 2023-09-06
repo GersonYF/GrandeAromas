@@ -28,6 +28,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Profile from './views/Profile';
 import Products from './views/Products';
+import Politicas from './views/Politicas';
 import Subscriptions from './views/Subscriptions';
 import ProductDetails from './views/ProductDetails';
 import OrderDetails from './views/OrderDetails';
@@ -52,6 +53,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Signup />} />
+            <Route path="/politicas" element={<Politicas />} />
             <Route path="/dashboard" element={<PrivateRoute />}>
                 <Route index element={<Dashboard />} />
                 <Route path="usuarios" element={<Users />} />
@@ -101,7 +103,7 @@ function App() {
             <Col sm={4} className="footer-col text-center">
               <p>LEGAL</p>
               <ul className="list-unstyled">
-                <li><Button variant="link" size="sm">Política de Privacidad</Button></li>
+                <li><Button variant="link" href= "/politicas" size="sm">Política de Privacidad</Button></li>
                 <li><Button variant="link" size="sm">Términos de Servicio</Button></li>
               </ul>
             </Col>
