@@ -59,7 +59,8 @@ const orderSlice = createSlice({
         state.selectedOrder = action.payload;
       })
       .addCase(createNewOrder.fulfilled, (state, action) => {
-        state.data.push(action.payload);
+        state.data.push(action.payload.data);
+        state.selectedOrder = action.payload.data;
       })
       .addCase(editOrder.fulfilled, (state, action) => {
         const index = state.data.findIndex(order => order.id === action.payload.id);

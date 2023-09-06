@@ -1,10 +1,10 @@
 // controllers/orderController.js
-const { Order, ProductOrder, Product } = require('../../../config/database');
+const { Address, Order, ProductOrder, Product, User } = require('../../../config/database');
 
 // Create a new order
 exports.createOrder = async (req, res) => {
   try {
-    let { user_id, shopping_address_id, payment_address_id, products, order_status, shopping_address, payment_address } = req.body;
+    let { user_id, shopping_address_id, payment_address_id, products, order_status = 'pagada', shopping_address, payment_address } = req.body;
 
     // If shopping_address details are provided, create a new address entry
     if (shopping_address && !shopping_address_id) {
@@ -50,6 +50,7 @@ exports.createOrder = async (req, res) => {
 
     res.status(201).send(order);
   } catch (error) {
+    console.log(error)
     res.status(500).send({ message: error.message });
   }
 };
@@ -68,7 +69,25 @@ exports.getAllOrders = async (req, res) => {
 // Get a specific order by its ID
 exports.getOrderById = async (req, res) => {
   try {
-    const order = await Order.findByPk(req.params.orderId);
+    const order = await Order.findByPk(req.params.orderId, {
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'name', 'email']  // Select only some attributes. You might want to exclude the password and other sensitive data
+        },
+        {
+          model: Address,
+          as: 'shoppingAddress',  // using an alias since you have two associations with the same model
+          attributes: ['name', 'address', 'neighborhood', 'city', 'country', 'department', 'zip_code']
+        },
+        {
+          model: Address,
+          as: 'paymentAddress', // using an alias
+          attributes: ['name', 'address', 'neighborhood', 'city', 'country', 'department', 'zip_code']
+        }
+      ]
+    });
+
     if (order) {
       res.json(order);
     } else {
@@ -78,6 +97,7 @@ exports.getOrderById = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
+
 
 // Update a specific order by its ID
 exports.updateOrder = async (req, res) => {

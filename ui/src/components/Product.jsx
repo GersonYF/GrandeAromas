@@ -14,9 +14,8 @@ const Product = ({ product, onAddToCart }) => {
   return (
     <Card 
       style={{ width: '18rem', margin: '0 10px', cursor: 'pointer' }} 
-      onClick={handleCardClick}  // Add onClick handler to the Card
     >
-      <Card.Img variant="top" src='/logo.png' />
+      <Card.Img variant="top" src='/logo.png' onClick={handleCardClick} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
         <Card.Text>
@@ -24,7 +23,7 @@ const Product = ({ product, onAddToCart }) => {
           <p className="Price">${product.price}</p>
           <p>{product.description}</p>
         </Card.Text>
-        <Button variant="primary" onClick={(e) => { e.stopPropagation(); onAddToCart(product); }}>Añadir al carrito</Button>
+        <Button variant="primary" onClick={onAddToCart}>Añadir al carrito</Button>
       </Card.Body>
     </Card>
   )

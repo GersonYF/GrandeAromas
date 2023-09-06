@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { createNewOrder } from './orderSlice';
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -40,6 +41,15 @@ const cartSlice = createSlice({
     setPaymentAddress: (state, action) => {
       state.paymentAddress = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createNewOrder.fulfilled, (state) => {
+        state.items = [];  // Clear the cart items
+        state.shippingAddress = null;
+        state.paymentAddress = null;
+        state.status = 'iddle';
+      })
   }
 });
 

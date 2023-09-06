@@ -6,7 +6,7 @@ const orderController = require('../controllers/orders.controller');
 
 const { authMiddleware } = require('../../../config/middlewares');
 
-router.post('/create', authMiddleware, orderController.createOrder);
+router.post('/', authMiddleware, orderController.createOrder);
 router.get('/', authMiddleware, orderController.getAllOrders);
 router.get('/:orderId', authMiddleware, orderController.getOrderById);
 router.put('/:orderId', authMiddleware, orderController.updateOrder);
