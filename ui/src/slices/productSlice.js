@@ -7,6 +7,16 @@ import {
   deleteProduct as deleteProductAPI,
 } from '../api/productAPI';
 
+import { getProductReviewsByProductIdAPI } from '../api/productAPI';
+
+export const fetchProductReviewsByProductId = createAsyncThunk(
+  'products/fetchProductReviewsByProductId',
+  async (productId) => {
+    const data = await getProductReviewsByProductIdAPI(productId);
+    return data;
+  }
+);
+
 // Async thunks
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   const data = await getAllProductsAPI();
@@ -38,6 +48,7 @@ const productSlice = createSlice({
   initialState: {
     data: [],
     selectedProduct: null,
+    reviews: [],
     status: 'idle',
     error: null
   },
@@ -49,7 +60,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data = action?.payload?.data;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = 'failed';
@@ -60,24 +71,37 @@ const productSlice = createSlice({
       })
       .addCase(fetchProductById.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.selectedProduct = action.payload;
+        console.log("action", action.payload)
+        state.selectedProduct = action.payload.data;
       })
       .addCase(fetchProductById.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
       .addCase(createNewProduct.fulfilled, (state, action) => {
-        state.data.push(action.payload);
+        state.data.push(action.payload.data);
       })
       .addCase(editProduct.fulfilled, (state, action) => {
         const index = state.data.findIndex(product => product.id === action.payload.id);
         if (index !== -1) {
-          state.data[index] = action.payload;
+          state.data[index] = action.payload.data;
         }
       })
       .addCase(removeProduct.fulfilled, (state, action) => {
         state.data = state.data.filter(product => product.id !== action.payload);
-      });
+      })
+      .addCase(fetchProductReviewsByProductId.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchProductReviewsByProductId.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.reviews = action.payload.data;  // update the reviews in the state
+      })
+      .addCase(fetchProductReviewsByProductId.rejected, (state, action) => {
+        state.status = 'failed';
+        state.reviews = []
+        state.error = action.error.message;
+      })
   }
 });
 

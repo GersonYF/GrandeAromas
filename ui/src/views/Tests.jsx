@@ -1,13 +1,37 @@
-import React from 'react'
-import Navbar from '../components/Navbar';
+import React, { useEffect } from 'react'
+import '../styles.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../slices/productSlice';
+import Product from '../components/Product';
 
-const Tests = () => {
+
+const Tienda = () => {
+
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products.data);
+  const user = useSelector((state) => state.auth.user);
+
+  useEffect(() => {
+    if(user){
+      dispatch(fetchProducts());
+    }
+  }, [dispatch]);
+
+  
   return (
-    <>
-      <Navbar />
-      <h1>Tests</h1>
-    </>
-  )
-}
+    <div className="container">
+      <div>
+        <h2 className="title2">NUESTROS PRODUCTOS</h2>
+        {products.length > 0 ? (
+          <div className="productos">
+            {products.map((product) => (<Product key={product.id} product={product} />))}
+          </div>
+        ): 'No hay productos'}
 
-export default Tests;
+      </div>
+    </div>
+  );
+};
+
+export default Tienda;

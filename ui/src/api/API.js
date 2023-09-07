@@ -69,6 +69,20 @@ class API {
       throw error;
     });
   }
+
+  getReviewsByProductId(productId) {
+    return axios.get(`${this.BASE_URL}/${productId}/reviews`).catch(error => {
+      console.error('API Error:', error);
+      throw error;
+    });
+  }
+
+  getOrdersByMe() {
+    return axios.get(`${this.BASE_URL}/me`).catch(error => {
+      console.error('API Error:', error);
+      throw error;
+    });
+  }
 }
 
 export default API;

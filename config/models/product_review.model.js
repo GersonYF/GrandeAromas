@@ -7,8 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     user_id: DataTypes.INTEGER,
     product_id: DataTypes.INTEGER,
-    question: DataTypes.STRING,
-    answer: DataTypes.STRING,
+    comment: DataTypes.STRING,
     stars: DataTypes.FLOAT,
     created_at: DataTypes.DATE,
     updated_at: DataTypes.DATE

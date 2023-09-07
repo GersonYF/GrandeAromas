@@ -6,6 +6,7 @@ import {
   getUserById as getUserByIdAPI,
   updateUser as updateUserAPI,
 } from '../api/usersAPI';
+import { fetchMyOrders } from './orderSlice';
 
 // Async thunks
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
@@ -33,6 +34,7 @@ const userSlice = createSlice({
   initialState: {
     data: [],
     selectedUser: null, // To store details of a single user when fetched by ID
+    orders: [],
     status: 'idle',
     error: null
   },
@@ -44,7 +46,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data = action.payload.data;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.status = 'failed';

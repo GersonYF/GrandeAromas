@@ -5,8 +5,8 @@ const { ProductReview } = require('../../../config/database');
 // Create a new product review
 exports.createProductReview = async (req, res) => {
   try {
-    const { user_id, product_id, question, answer, stars } = req.body;
-    const productReview = await ProductReview.create({ user_id, product_id, question, answer, stars });
+    const { user_id, product_id, comment, stars } = req.body; // Updated fields
+    const productReview = await ProductReview.create({ user_id, product_id, comment, stars }); // Updated fields
     res.status(201).send(productReview);
   } catch (error) {
     res.status(500).send({ message: error.message });
@@ -65,6 +65,21 @@ exports.deleteProductReview = async (req, res) => {
       res.json({ message: 'Product Review deleted successfully' });
     } else {
       res.status(404).json({ message: 'Product Review not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};
+
+// Get all reviews for a specific product
+exports.getProductReviewsByProductId = async (req, res) => {
+  try {
+    const product_id = req.params.productId;
+    const productReviews = await ProductReview.findAll({ where: { product_id } });
+    if (productReviews && productReviews.length) {
+      res.json(productReviews);
+    } else {
+      res.status(404).json({ message: 'No reviews found for this product' });
     }
   } catch (error) {
     res.status(500).send({ message: error.message });

@@ -6,7 +6,7 @@ const productReviewController = require('../controllers/product_reviews.controll
 
 const { authMiddleware } = require('../../../config/middlewares');
 
-router.post('/create', authMiddleware, productReviewController.createProductReview);
+router.post('/', authMiddleware, productReviewController.createProductReview);
 router.get('/', productReviewController.getAllProductReviews);
 router.get('/:reviewId', productReviewController.getProductReviewById);
 router.put('/:reviewId', authMiddleware, productReviewController.updateProductReview);

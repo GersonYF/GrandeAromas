@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import CartList from './CartList';  // Assuming you've stored CartList in the same directory
+import { removeFromCart } from '../slices/cartSlice';  // Update with the actual path to your cart slice
+import { logout } from '../slices/authSlice';
 
 const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
+  const cartItems = useSelector((state) => state.cart.items);  // Adjust path based on your store structure
+  const dispatch = useDispatch();
+
+  // State for toggling the cart dropdown
+  const [showCart, setShowCart] = useState(false);
+
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeFromCart(itemId));
+  };
+
+  const toggleCartVisibility = () => {
+    setShowCart((prevShowCart) => !prevShowCart);
+  };
+
+  const onLogout = () => {
+    dispatch(logout());
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
         <Link className="navbar-brand" to="/">
-          Grandes Aromas
+        <img src={process.env.PUBLIC_URL + '/logo.png'} style={{width: "100px"}} alt="logo" />
         </Link>
         <button
           className="navbar-toggler"
@@ -24,6 +45,16 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
+            <li>
+              <Link className='nav-link' to="/nosotros">
+                Nosotros
+              </Link>
+            </li>
+            <li>
+              <Link className='nav-link' to="/shop">
+                Tienda
+              </Link>
+            </li>
             {user ? (
               <li className="nav-item dropdown">
                 <a
@@ -37,25 +68,41 @@ const Navbar = () => {
                   {user.name}
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
+                <li>
                     <Link className="dropdown-item" to="/profile">
                       Ver perfil
                     </Link>
                   </li>
-                  <li>
-                    <Link className="dropdown-item" to="/logout">
-                      Logout
+                  {(user.is_admin || user.is_staff) && (<li>
+                    <Link className='dropdown-item' to="/dashboard">
+                      Administración
                     </Link>
+                  </li>)}
+                  <li>
+                    <a className='dropdown-item' onClick={onLogout}>
+                      Logout
+                    </a>
                   </li>
                 </ul>
               </li>
             ) : (
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Iniciar Sesión
-                </Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Iniciar Sesión
+                  </Link>
+                </li>
+              </>
             )}
+          </ul>
+          <ul className="navbar-nav ms-auto">
+            <li>
+              <Button variant="outline-success" onClick={toggleCartVisibility}>
+                <i className="bi bi-cart"/>
+              </Button>
+              {/* Conditionally render the CartList component */}
+              {showCart && <CartList items={cartItems} onRemoveItem={handleRemoveItem} />}
+            </li>
           </ul>
         </div>
       </div>
